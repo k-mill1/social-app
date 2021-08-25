@@ -8,8 +8,8 @@ function Add(props) {  //function for add component
 
     const [state, changeState] = useState({  //sets up one individual todo state 
         id:0,
-        description:"",
-        completed: false,
+        post:"",
+        likes: 0,
     });
 
     toastr.options = {  //all options for toastr go to toastr website
@@ -47,14 +47,14 @@ function Add(props) {  //function for add component
         event.preventDefault();  //prevents screen refreshing
         props.onSubmit(state);
         toastr.success("Item added");
-        changeState({ id: 0, description: "", completed: false});  //resets state to as was at begining
+        changeState({ id: 0, post: "", likes: 0});  //resets state to as was at begining
     };
 
     return (
     <div className="container">
     <Form onSubmit={(e) => submitHandler(e)}>
         <Form.Group controlId="taskID">
-            <Form.Label>Task ID</Form.Label>
+            <Form.Label>User ID</Form.Label>
             <Form.Control name="id" 
             type ="number" 
             value={state["id"]} 
@@ -64,18 +64,13 @@ function Add(props) {  //function for add component
             />           
         </Form.Group>
 
-        <Form.Group controlId ="taskDescription">
-            <Form.Label>Description</Form.Label>
-            <Form.Control name="description"  type="text" placeholder="Description" value={state["description"]}  onChange={(e) =>{
+        <Form.Group controlId ="userPost">
+            <Form.Label>Post</Form.Label>
+            <Form.Control name="post"  type="text" placeholder="Post" value={state["post"]}  onChange={(e) =>{
                 handleChange(e);
             }} />
         </Form.Group>
-        <Form.Group controlId="complete">
-            <Form.Check name="completed" type="checkbox" label="Complete" value={state["completed"]} onChange={(e) =>{
-                handleChange(e);
-            }}  />
-        </Form.Group>
-        <Button variant="primary" type="submit">Submit</Button>
+        <Button variant="primary" type="submit">Add Post</Button>
     </Form>
     </div>
 );

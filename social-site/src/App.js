@@ -16,10 +16,7 @@ import Navbar from 'react-bootstrap/Navbar'
 
 
 function App() {
-  const [todos, changeTodos] = useState([
-    // { id: 1, description: "make static data", completed: false },
-    // { id: 2, description: "make dynamic data", completed: false },
-  ]);
+  const [todos, changeTodos] = useState([]);
 
   const updateListItems = (task) => {
     console.log(task)
@@ -27,7 +24,14 @@ function App() {
     localStorage.setItem("list", JSON.stringify([...todos, task]));  //store in browser history
   };
 
+  const buttonHandler = (id) => {
+    const update = todos.map(post => post.id === id ? { ...post, likes: post.likes +1 } : post)
+    changeTodos(update)
+  }
+ 
+
   useEffect(() => {
+    // localStorage.removeItem('list')
     const listContents = localStorage.getItem("list"); //check if item in local storage called list
     changeTodos(JSON.parse(listContents) || []); //add to state using changeTodos method 
   }, []);
@@ -35,7 +39,7 @@ function App() {
   return (
     <Router>
       <Navbar bg="light" expand="md">
-        <Navbar.Brand>Todo List</Navbar.Brand>
+        <Navbar.Brand>Social App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -55,7 +59,7 @@ function App() {
             <Add onSubmit={(task) => updateListItems(task)} />
           </Route>
           <Route exact path="/">
-            <View todos={todos} />
+            <View todos={todos} buttonHandler = {(id) => buttonHandler(id)} />
           </Route>
           <Route path="/">Error: 404 not found</Route> /if /and anything else
         </Switch>
