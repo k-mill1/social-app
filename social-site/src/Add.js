@@ -7,7 +7,7 @@ import "toastr/build/toastr.min.css"
 function Add(props) {  //function for add component
 
     const [state, changeState] = useState({  //sets up one individual todo state 
-        id:0,
+        id:"",
         post:"",
         likes: 0,
     });
@@ -47,16 +47,17 @@ function Add(props) {  //function for add component
         event.preventDefault();  //prevents screen refreshing
         props.onSubmit(state);
         toastr.success("Item added");
-        changeState({ id: 0, post: "", likes: 0});  //resets state to as was at begining
+        changeState({ id: "", post: "", likes: 0});  //resets state to as was at begining
     };
 
     return (
     <div className="container">
     <Form onSubmit={(e) => submitHandler(e)}>
         <Form.Group controlId="taskID">
-            <Form.Label>User ID</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control name="id" 
-            type ="number" 
+            type ="text"
+            placeholder="Username" 
             value={state["id"]} 
             onChange={(e) =>{
                 handleChange(e);  //calls handleChange if you change text box passes event so know which changed
@@ -70,6 +71,7 @@ function Add(props) {  //function for add component
                 handleChange(e);
             }} />
         </Form.Group>
+        <br />
         <Button variant="primary" type="submit">Add Post</Button>
     </Form>
     </div>
