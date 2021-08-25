@@ -1,33 +1,36 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
 import './App.css';
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 function View(props) {
 
   const buildRows = () => {
       console.log(props)
-    return props.todos.map((current) => (
-      <tr key={current.id}>
-        <td>{current.id}</td>
-        <td>{current.post}</td>
-        <td><button onClick = {() => props.buttonHandler(current.id)}>Like</button>{current.likes}</td>
-      </tr>
+    return props.pages.map((current) => (
+       <Card>
+       <Card.Body >
+       <Card.Header>{current.id}</Card.Header>
+       <Card.Text>
+           {current.post}
+       </Card.Text>
+       <Row>
+           <Col>
+               <Button variant = 'success' onClick = {() => props.buttonHandler(current.id)}>Like</Button>
+               {'   ' + current.likes}
+           </Col>
+       </Row>
+       </Card.Body>
+   </Card>
     ));
   };
 
   return (
     <>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>User ID</th>
-            <th>Post</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buildRows()}
-        </tbody>
-      </Table>
+      {buildRows()}
     </>
   );
 
