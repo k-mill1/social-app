@@ -41,11 +41,61 @@
   font-size: 20px;
   font-weight: bold;
   padding: 8px 1px;
+  background: rgb(143, 143, 207);
 }
 
 h5 {
   display: inline-block;
-  padding-left: 5px;
   font-size: 20px;
   font-weight: bold;
+  margin: 5px;
+  text-align:left;
 }
+
+#navbar-header{
+  background: linear-gradient(70deg, rgb(98, 98, 226), rgb(246, 243, 243));
+  padding: 10px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color:black;
+}
+
+.card {
+  margin-top: 20px;
+  border: none;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 0.2);
+}
+
+.username.card-header {
+  padding:10px;
+}
+
+.card-text {
+  padding:10px;
+  margin-bottom:0px;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.btn.btn-primary {
+  background-color: rgb(98, 98, 226);
+  border:none;
+}
+
+.add-container{
+  width:70%;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 3px 5px rgb(0 0 0 / 0.2);
+  border-radius: 5px;
+}
+
+
+
+
+
+

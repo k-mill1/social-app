@@ -38,7 +38,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar bg="light" expand="md">
+      <Navbar id="navbar-header" expand="md">
         <Navbar.Brand>Social App</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav"></Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">

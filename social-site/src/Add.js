@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import toastr from "toastr";
 import "toastr/build/toastr.min.css"
+import './App.css';
 
 function Add(props) {  //function for add component
 
@@ -27,7 +28,7 @@ function Add(props) {  //function for add component
         showDuration: "3000",
         showEasing: "swing",
         showMethod: "fadeIn",
-        timeOut: "5000",
+        timeOut: "5000"
       };
       toastr.clear();
 
@@ -35,23 +36,19 @@ function Add(props) {  //function for add component
     const handleChange = (event) => {
         console.log(event);
         const newState = {...state};  //makes state same as is so far
-        if(event.target.name === "completed"){
-            newState[event.target.name] = !state.completed;
-        } else {
-            newState[event.target.name] = event.target.value;
-        }
+        newState[event.target.name] = event.target.value;
         changeState(newState);
     };
 
     const submitHandler =(event) => {
         event.preventDefault();  //prevents screen refreshing
         props.onSubmit(state);
-        toastr.success("Item added");
+        toastr.success("Post added");
         changeState({ id: "", post: "", likes: 0});  //resets state to as was at begining
     };
 
     return (
-    <div className="container">
+    <div className="add-container">
     <Form onSubmit={(e) => submitHandler(e)}>
         <Form.Group controlId="taskID">
             <Form.Label>Username</Form.Label>

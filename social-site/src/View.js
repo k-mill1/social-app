@@ -1,5 +1,4 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table';
 import './App.css';
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -18,9 +17,11 @@ function View(props) {
            {current.post}
        </Card.Text>
        <Row>
-           <Col>
-               <Button variant = 'success' onClick = {() => props.buttonHandler(current.id)}>Like</Button>
-               <h5>{'   ' + current.likes}</h5>
+           <Col md= 'auto'>
+               <Button onClick = {() => props.buttonHandler(current.id)}>Like</Button>
+            </Col>  
+            <Col md= 'auto'> 
+               <h5>{current.likes}</h5>
            </Col>
        </Row>
        </Card.Body>
