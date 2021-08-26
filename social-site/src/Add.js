@@ -75,7 +75,7 @@ function Add(props) {
             }} />
         </Form.Group>
         <br />
-        <Button variant = 'primary' type = 'submit'>Add Post</Button>
+        <Button variant = 'primary' type ='submit'>Add Post</Button>
     </Form>
     </div>
 );

@@ -11,22 +11,24 @@ function View(props) {
   const buildRows = () => {
       console.log(props)
     return props.pages.map((current) => (
-       <Card style={{width: '30rem'}}>
-       <Card.Body  >
-       <Card.Header className = 'username'>{current.id}</Card.Header>
-       <Card.Text style={{textAlign: 'justify'}} >
-           {current.post}
-       </Card.Text>
        <Row>
-           <Col md= 'auto'>
-               <Button onClick = {() => props.buttonHandler(current.postId)}>Like</Button>
-            </Col>  
-            <Col md= 'auto'> 
-               <h5>{current.likes}</h5>
-           </Col>
-       </Row>
-       </Card.Body>
-   </Card>
+          <Card style={{width: '30rem'}}>
+            <Card.Body  >
+            <Card.Header className = 'username'>{current.id}</Card.Header>
+            <Card.Text style={{textAlign: 'justify'}} >
+                {current.post}
+            </Card.Text>
+            <Row>
+                <Col xs= 'auto'>
+                    <Button onClick = {() => props.buttonHandler(current.postId)}>Like</Button>
+                </Col>  
+                <Col xs= 'auto'> 
+                    <h5>{current.likes}</h5>
+                </Col>
+            </Row>
+            </Card.Body>
+          </Card>
+        </Row>
     ));
   };
 
