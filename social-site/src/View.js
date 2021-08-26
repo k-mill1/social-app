@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 function View(props) {
 
+  // builds a card for each new post that's submitted
   const buildRows = () => {
       console.log(props)
     return props.pages.map((current) => (
@@ -18,7 +19,7 @@ function View(props) {
        </Card.Text>
        <Row>
            <Col md= 'auto'>
-               <Button onClick = {() => props.buttonHandler(current.id)}>Like</Button>
+               <Button onClick = {() => props.buttonHandler(current.postId)}>Like</Button>
             </Col>  
             <Col md= 'auto'> 
                <h5>{current.likes}</h5>
@@ -29,6 +30,7 @@ function View(props) {
     ));
   };
 
+  // displays the cards
   return (
     <>
       {buildRows()}
