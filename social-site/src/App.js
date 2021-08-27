@@ -29,18 +29,19 @@ function App() {
     changePages(update) 
   }
   
+  // changes pages to contents in the local storage or an empty array at initial render
   useEffect(() => {
     // localStorage.removeItem('list') // clears local storage
-    const listContents = localStorage.getItem('list'); //check if item in local storage called list
-    changePages(JSON.parse(listContents) || []); //add to state using changePages method 
+    const listContents = localStorage.getItem('list');
+    changePages(JSON.parse(listContents) || []);
   }, []);
 
-  // updates local storage whenever the state of the items changes
+  // updates local storage whenever the state of pages changes
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify([...pages]));
   }, [pages]);
 
-  // displays the entire app (parent component of view.js and add.js)
+  // displays the entire app
   return (
     <Router>
       <Navbar id = 'navbar-header' expand = 'md'>
@@ -66,7 +67,7 @@ function App() {
           <Route exact path = '/'>
             <View pages={pages} buttonHandler = {(id) => buttonHandler(id)} />
           </Route>
-          <Route path = '/'>Error: 404 not found</Route> /if /and anything else
+          <Route path = '/'>Error: 404 not found</Route>
         </Switch>
       </Container>
     </Router>

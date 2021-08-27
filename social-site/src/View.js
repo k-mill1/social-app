@@ -7,11 +7,11 @@ import Button from 'react-bootstrap/Button';
 
 function View(props) {
 
-  // builds a card for each new post that's submitted
+  // builds a card for each new post that's added
   const buildRows = () => {
       console.log(props)
     return props.pages.map((current) => (
-       <Row>
+       <Row key = {current.postId}>
           <Card style={{width: '30rem'}}>
             <Card.Body  >
             <Card.Header className = 'username'>{current.id}</Card.Header>
