@@ -15,14 +15,15 @@ import Navbar from 'react-bootstrap/Navbar'
 
 function App() {
   const [pages, changePages] = useState([]);
-
+  const [id, changeId] = useState(0);
+ 
   // adds new post to the list and stores them in local storage
   const updateListItems = (post) => {
     console.log(post)
     changePages((prevState) => [...prevState, post]);  //adds new post to the end of the array
     localStorage.setItem('list', JSON.stringify([...pages, post]));  //stores in browser history
   };
-
+  
   // increments the number of likes on click
   const buttonHandler = (id) => {
     const update = pages.map(post => post.postId === id ? { ...post, likes: post.likes +1 } : post)
@@ -36,10 +37,26 @@ function App() {
     changePages(JSON.parse(listContents) || []);
   }, []);
 
+  
   // updates local storage whenever the state of pages changes
   useEffect(() => {
     localStorage.setItem('list', JSON.stringify([...pages]));
   }, [pages]);
+
+  // changes id to the contents of the local storage if the value in local storage is not null
+  useEffect(() => {
+  // localStorage.removeItem('id') 
+    const listContents = localStorage.getItem('id');
+    let parsed = (JSON.parse(listContents));
+    if (parsed !== null) {
+    console.log(typeof(parsed[0]))
+    changeId(parsed[0])}
+  }, []);
+
+  // updates local storage whenever the state of id changes
+  useEffect(() => {
+    localStorage.setItem('id', JSON.stringify([id]));
+  }, [id]);
 
   // displays the entire app
   return (
@@ -62,7 +79,7 @@ function App() {
       <Container>
         <Switch>
           <Route path = '/add'>
-            <Add onSubmit={(post) => updateListItems(post)} />
+            <Add onSubmit={(post) => updateListItems(post)} id={id} changeId = {changeId}/>
           </Route>
           <Route exact path = '/'>
             <View pages={pages} buttonHandler = {(id) => buttonHandler(id)} />

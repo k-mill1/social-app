@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import toastr from 'toastr';
@@ -14,6 +14,7 @@ function Add(props) {
         post:'',
         likes: 0,
     });
+    // const [id1, changeId] = useState(0);
 
     // pop-up confirmation that post has been added
     toastr.options = {
@@ -34,19 +35,25 @@ function Add(props) {
         timeOut: '5000'
       };
       toastr.clear();
-
+     
     // changes the state to whatever you have typed in the form
     const handleChange = (event) => {
-        console.log(event);
         const newState = {...state}; 
         newState[event.target.name] = event.target.value;
         changeState(newState);
     };
-
+   
+    // updates postId when the page first renders
+    useEffect(() => {
+        changeState({postId: props.id, id: '', post: '', likes: 0});
+    },[props.id]);
+   
     // sends the post to the view page
     const submitHandler =(event) => {
         event.preventDefault();  // prevents screen refreshing
+        changeState({postId: props.id, id: '', post: '', likes: 0})
         const newId = state.postId + 1
+        props.changeId(newId)
         props.onSubmit(state);
         toastr.success('Post added');
         changeState({postId: newId, id: '', post: '', likes: 0});
@@ -70,7 +77,7 @@ function Add(props) {
 
         <Form.Group controlId = 'userPost'>
             <Form.Label>Post</Form.Label>
-            <Form.Control name = 'post'  type = 'text' placeholder = 'Post' value={state['post']}  onChange={(e) =>{
+            <Form.Control name = 'post'  type = 'text' placeholder = 'Post' value={state['post']} onChange={(e) =>{
                 handleChange(e);
             }} />
         </Form.Group>
